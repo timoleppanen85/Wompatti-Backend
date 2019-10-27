@@ -7,11 +7,11 @@ namespace WompattiApi.Models
 {
     public partial class Answer
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         [Required]
         [Column("Answer")]
         public string Answer1 { get; set; }
-        public string ExtraTest { get; set; }
+        public string ExtraText { get; set; }
         public int AnswerSet { get; set; }
         public long QuestionId { get; set; }
         public long UserId { get; set; }

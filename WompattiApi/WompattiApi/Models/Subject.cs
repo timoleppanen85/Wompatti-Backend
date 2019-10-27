@@ -14,7 +14,6 @@ namespace WompattiApi.Models
 
         public long Id { get; set; }
         [Required]
-        [StringLength(50)]
         public string Title { get; set; }
         [Required]
         public string Header1 { get; set; }
@@ -22,9 +21,9 @@ namespace WompattiApi.Models
         public string Header2 { get; set; }
         [Required]
         public string Header3 { get; set; }
-        public string Header4 { get; set; }
         [Required]
-        public bool? Visible { get; set; }
+        public string Header4 { get; set; }
+        public bool Hidden { get; set; }
 
         [InverseProperty("Subject")]
         public virtual ICollection<Question> Question { get; set; }

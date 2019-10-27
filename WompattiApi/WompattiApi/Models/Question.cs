@@ -15,13 +15,13 @@ namespace WompattiApi.Models
         public long Id { get; set; }
         [Required]
         public string Title { get; set; }
+        [Required]
         public string Image { get; set; }
         public string Option1 { get; set; }
         public string Option2 { get; set; }
         public string Option3 { get; set; }
         public long SubjectId { get; set; }
-        [Required]
-        public bool? Visible { get; set; }
+        public bool Hidden { get; set; }
 
         [ForeignKey("SubjectId")]
         [InverseProperty("Question")]

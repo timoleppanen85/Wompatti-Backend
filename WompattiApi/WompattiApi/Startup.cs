@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WompattiApi.Repositories;
+using WompattiApi.Services;
 
 namespace WompattiApi
 {
@@ -25,6 +27,16 @@ namespace WompattiApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Services
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<ISubjectService, SubjectService>();
+            services.AddScoped<IQuestionService, QuestionService>();
+
+            // Repositories
+            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<ISubjectRepository, SubjectRepository>();
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
+
             services.AddControllers();
         }
 

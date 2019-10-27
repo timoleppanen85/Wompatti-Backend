@@ -48,18 +48,11 @@ namespace WompattiApi.Models
 
             modelBuilder.Entity<Question>(entity =>
             {
-                entity.Property(e => e.Visible).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.Question)
                     .HasForeignKey(d => d.SubjectId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Question_Subject");
-            });
-
-            modelBuilder.Entity<Subject>(entity =>
-            {
-                entity.Property(e => e.Visible).HasDefaultValueSql("((1))");
             });
 
             OnModelCreatingPartial(modelBuilder);
