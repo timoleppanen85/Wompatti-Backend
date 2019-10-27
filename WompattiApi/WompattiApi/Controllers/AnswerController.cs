@@ -20,10 +20,40 @@ namespace WompattiApi.Controllers
             _answerService = answerService;
         }
 
+        [HttpPost]
+        public ActionResult<Answer> CreateAnswer(Answer answer)
+        {
+            return new JsonResult(_answerService.CreateAnswer(answer));
+        }
+
         [HttpGet]
+        public ActionResult<List<Answer>> ReadAnswer()
+        {
+            return new JsonResult(_answerService.ReadAnswers());
+        }
+
+        [HttpGet("{id}")]
         public ActionResult<Answer> ReadAnswer(long id)
         {
             return new JsonResult(_answerService.ReadAnswer(id));
+        }
+
+        [HttpGet("search/{answer}")]
+        public ActionResult<List<Answer>> ReadAnswers(string answer)
+        {
+            return new JsonResult(_answerService.ReadAnswers(answer));
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Answer> UpdateAnswer(Answer answer, long id)
+        {
+            return new JsonResult(_answerService.UpdateAnswer(answer, id));
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Answer> DeleteAnswer(long id)
+        {
+            return new JsonResult(_answerService.DeleteAnswer(id));
         }
     }
 }

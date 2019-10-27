@@ -13,7 +13,7 @@ namespace WompattiApi.Services
             throw new NotImplementedException();
         }
 
-        public User DeleteUser(User user, long id)
+        public User DeleteUser(long id)
         {
             throw new NotImplementedException();
         }

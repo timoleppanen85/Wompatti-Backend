@@ -16,10 +16,34 @@ namespace WompattiApi.Controllers
             _questionService = questionService;
         }
 
+        [HttpPost]
+        public ActionResult<Question> CreateQuestion(Question question)
+        {
+            return new JsonResult(_questionService.CreateQuestion(question));
+        }
+
         [HttpGet]
         public ActionResult<List<Question>> ReadQuestions()
         {
             return new JsonResult(_questionService.ReadQuestions());
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Question> ReadQuestion(long id)
+        {
+            return new JsonResult(_questionService.ReadQuestion(id));
+        }
+
+        [HttpGet("search/{title}")]
+        public ActionResult<List<Question>> ReadQuestions(string title)
+        {
+            return new JsonResult(_questionService.ReadQuestions(title));
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Question> UpdateQuestion(Question question, long id)
+        {
+            return new JsonResult(_questionService.UpdateQuestion(question, id));
         }
     }
 }

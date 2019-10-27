@@ -16,10 +16,41 @@ namespace WompattiApi.Controllers
             _adminService = adminService;
         }
 
+        [HttpPost]
+        public ActionResult<Admin> CreateAdmin(Admin admin)
+        {
+            return new JsonResult(_adminService.CreateAdmin(admin));
+        }
+
         [HttpGet]
         public ActionResult<List<Admin>> ReadAdmins()
         {
             return new JsonResult(_adminService.ReadAdmins());
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Admin> ReadAdmin(long id)
+        {
+            return new JsonResult(_adminService.ReadAdmin(id));
+        }
+
+        [HttpGet("search/{userName}")]
+        public ActionResult<Admin> ReadAdmin(string userName)
+        {
+            return new JsonResult(_adminService.ReadAdmins(userName));
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Admin> UpdateAdmin(Admin admin, long id)
+        {
+            return new JsonResult(_adminService.UpdateAdmin(admin, id));
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Admin> DeleteAdmin(long id)
+        {
+            return new JsonResult(_adminService.DeleteAdmin(id));
+        }
+
     }
 }

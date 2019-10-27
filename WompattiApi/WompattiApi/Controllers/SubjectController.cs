@@ -16,16 +16,35 @@ namespace WompattiApi.Controllers
             _subjectService = subjectService;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<Subject> ReadQuestion(long id)
+        [HttpPost]
+        public ActionResult<Subject> CreateSubject(Subject subject)
         {
-            return new JsonResult(_subjectService.ReadSubject(id));
+            return new JsonResult(_subjectService.CreateSubject(subject));
         }
-        
+
         [HttpGet]
         public ActionResult<List<Subject>> ReadSubjects()
         {
             return new JsonResult(_subjectService.ReadSubjects());
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Subject> ReadSubject(long id)
+        {
+            return new JsonResult(_subjectService.ReadSubject(id));
+        }
+
+        [HttpGet("search/{title}")]
+        public ActionResult<List<Subject>> ReadSubjects(string title)
+        {
+            return new JsonResult(_subjectService.ReadSubjects(title));
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Subject> UpdateSubject(Subject subject, long id)
+        {
+            return new JsonResult(_subjectService.UpdateSubject(subject, id));
+        }
+        
     }
 }

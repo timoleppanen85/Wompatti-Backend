@@ -13,6 +13,6 @@ namespace WompattiApi.Services
         List<User> ReadUsers();
         List<User> ReadUsers(string searchUser);
         User UpdateUser(User user, long id);
-        User DeleteUser(User user, long id);
+        User DeleteUser(long id);
     }
 }

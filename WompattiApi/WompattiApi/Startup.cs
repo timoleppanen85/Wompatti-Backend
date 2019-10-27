@@ -31,11 +31,15 @@ namespace WompattiApi
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ISubjectService, SubjectService>();
             services.AddScoped<IQuestionService, QuestionService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAnswerService, AnswerService>();
 
             // Repositories
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<ISubjectRepository, SubjectRepository>();
             services.AddScoped<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAnswerRepository, AnswerRepository>();
 
             services.AddControllers();
         }
