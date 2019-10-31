@@ -1,39 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using WompattiApi.Models;
+using System.Linq;
+
 
 namespace WompattiApi.Repositories
 {
     public class AdminRepository : IAdminRepository
     {
-        public Admin CreateAdmin(Admin admin)
+        private readonly WompattidbContext _context;
+
+        public AdminRepository(WompattidbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Admin DeleteAdmin(long id)
+        public Admin CreateAdmin(Admin admin)
         {
-            throw new NotImplementedException();
+            _context.Add(admin);
+            _context.SaveChanges();
+            return admin;
+        }
+
+        public Admin DeleteAdmin(Admin admin)
+        {
+            _context.Remove(admin);
+            _context.SaveChanges();
+            return admin;
         }
 
         public Admin ReadAdmin(long id)
         {
-            throw new NotImplementedException();
+            return _context.Admin
+                .Where(a => a.Id == id)
+                .FirstOrDefault(a => a.Id == id);
         }
 
         public List<Admin> ReadAdmins()
         {
-            throw new NotImplementedException();
+            return _context.Admin
+                .ToList();
         }
 
         public List<Admin> ReadAdmins(string searchAdmin)
         {
-            throw new NotImplementedException();
+            return _context.Admin
+                .Where(a => a.Username.Contains(searchAdmin))
+                .ToList();
         }
 
-        public Admin UpdateAdmin(Admin admin, long id)
+        public Admin UpdateAdmin(Admin admin)
         {
-            throw new NotImplementedException();
+            _context.Update(admin);
+            _context.SaveChanges();
+            return admin;
         }
     }
 }

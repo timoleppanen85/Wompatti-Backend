@@ -3,39 +3,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WompattiApi.Models;
+using WompattiApi.Repositories;
 
 namespace WompattiApi.Services
 {
     public class AdminService : IAdminService
     {
+        private readonly IAdminRepository _adminRepository;
+
+        public AdminService(IAdminRepository adminRepository)
+        {
+            _adminRepository = adminRepository;
+        }
+
         public Admin CreateAdmin(Admin admin)
         {
-            throw new NotImplementedException();
+            return _adminRepository.CreateAdmin(admin);
         }
 
         public Admin DeleteAdmin(long id)
         {
-            throw new NotImplementedException();
+            Admin admin = ReadAdmin(id);
+            return _adminRepository.DeleteAdmin(admin);
         }
 
         public Admin ReadAdmin(long id)
         {
-            throw new NotImplementedException();
+            return _adminRepository.ReadAdmin(id);
         }
 
         public List<Admin> ReadAdmins()
         {
-            throw new NotImplementedException();
+            return _adminRepository.ReadAdmins();
         }
 
         public List<Admin> ReadAdmins(string userName)
         {
-            throw new NotImplementedException();
+            return _adminRepository.ReadAdmins(userName);
         }
 
         public Admin UpdateAdmin(Admin admin, long id)
         {
-            throw new NotImplementedException();
+            Admin checkAdmin = _adminRepository.ReadAdmin(id);
+            if (checkAdmin.Equals(admin))
+            {
+                return _adminRepository.UpdateAdmin(admin);
+            } else
+            {
+                return null;
+            }
         }
     }
 }

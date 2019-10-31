@@ -12,7 +12,7 @@ namespace WompattiApi.Repositories
         Admin ReadAdmin(long id);
         List<Admin> ReadAdmins();
         List<Admin> ReadAdmins(string searchAdmin);
-        Admin UpdateAdmin(Admin admin, long id);
-        Admin DeleteAdmin(long id);
+        Admin UpdateAdmin(Admin admin);
+        Admin DeleteAdmin(Admin admin);
     }
 }
