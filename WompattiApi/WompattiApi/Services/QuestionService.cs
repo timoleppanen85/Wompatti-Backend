@@ -9,9 +9,9 @@ namespace WompattiApi.Services
 {
     public class QuestionService : IQuestionService
     {
-        private readonly QuestionRepository _questionRepository;
+        private readonly IQuestionRepository _questionRepository;
 
-        public QuestionService (QuestionRepository questionRepository)
+        public QuestionService (IQuestionRepository questionRepository)
         {
             _questionRepository = questionRepository;
         }

@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WompattiApi.Models;
 using WompattiApi.Repositories;
 using WompattiApi.Services;
 
@@ -27,6 +29,9 @@ namespace WompattiApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Connection
+            services.AddDbContext<WompattidbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LocalWompattiDBContext")));
+
             // Services
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ISubjectService, SubjectService>();
@@ -40,6 +45,12 @@ namespace WompattiApi
             services.AddScoped<IQuestionRepository, QuestionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAnswerRepository, AnswerRepository>();
+
+            // CORS
+            services.AddCors(opt => opt.AddPolicy("AllowAnyPolicy", Builder =>
+            {
+                Builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
 
             services.AddControllers();
         }
