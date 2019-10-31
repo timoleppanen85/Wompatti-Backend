@@ -9,6 +9,6 @@ namespace WompattiApi.Repositories
         Subject ReadSubject(long id);
         List<Subject> ReadSubjects();
         List<Subject> ReadSubjects(string searchSubject);
-        Subject UpdateSubject(Subject subject, long id);
+        Subject UpdateSubject(Subject subject);
     }
 }

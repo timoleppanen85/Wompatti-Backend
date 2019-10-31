@@ -12,7 +12,7 @@ namespace WompattiApi.Repositories
         User ReadUser(long id);
         List<User> ReadUsers();
         List<User> ReadUsers(string searchUser);
-        User UpdateUser(User user, long id);
-        User DeleteUser(User user, long id);
+        User UpdateUser(User user);
+        User DeleteUser(User user);
     }
 }

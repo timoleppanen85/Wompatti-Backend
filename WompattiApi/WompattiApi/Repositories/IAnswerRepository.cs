@@ -12,7 +12,7 @@ namespace WompattiApi.Repositories
         Answer ReadAnswer(long id);
         List<Answer> ReadAnswers();
         List<Answer> ReadAnswers(string searchAnswer);
-        Answer UpdateAnswer(Answer answer, long id);
-        Answer DeleteAnswer(long id);
+        Answer UpdateAnswer(Answer answer);
+        Answer DeleteAnswer(Answer answer);
     }
 }

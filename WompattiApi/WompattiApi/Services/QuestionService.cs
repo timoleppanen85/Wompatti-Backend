@@ -3,34 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WompattiApi.Models;
+using WompattiApi.Repositories;
 
 namespace WompattiApi.Services
 {
     public class QuestionService : IQuestionService
     {
+        private readonly QuestionRepository _questionRepository;
+
+        public QuestionService (QuestionRepository questionRepository)
+        {
+            _questionRepository = questionRepository;
+        }
+
         public Question CreateQuestion(Question question)
         {
-            throw new NotImplementedException();
+            return _questionRepository.CreateQuestion(question);
         }
 
         public Question ReadQuestion(long id)
         {
-            throw new NotImplementedException();
+            return _questionRepository.ReadQuestion(id);
         }
 
         public List<Question> ReadQuestions()
         {
-            throw new NotImplementedException();
+            return _questionRepository.ReadQuestions();
         }
 
         public List<Question> ReadQuestions(string searchQuestion)
         {
-            throw new NotImplementedException();
+            return _questionRepository.ReadQuestions(searchQuestion);
         }
 
         public Question UpdateQuestion(Question question, long id)
         {
-            throw new NotImplementedException();
+            Question checkedQuestion = ReadQuestion(id);
+
+            if (checkedQuestion.Equals(question))
+            {
+                return _questionRepository.UpdateQuestion(question);
+            }
+            else
+            {
+                return question;
+            }
         }
     }
 }

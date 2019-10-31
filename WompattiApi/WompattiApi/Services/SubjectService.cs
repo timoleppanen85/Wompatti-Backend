@@ -1,34 +1,48 @@
 ﻿using System.Collections.Generic;
 using WompattiApi.Models;
+using WompattiApi.Repositories;
 
 namespace WompattiApi.Services
 {
     public class SubjectService : ISubjectService
-
     {
+        private readonly ISubjectRepository _subjectRepository;
+
+        public SubjectService(ISubjectRepository subjectRepository)
+        {
+            _subjectRepository = subjectRepository;
+        }
         public Subject CreateSubject(Subject subject)
         {
-            throw new System.NotImplementedException();
+            return _subjectRepository.CreateSubject(subject);
         }
 
         public Subject ReadSubject(long id)
         {
-            throw new System.NotImplementedException();
+            return _subjectRepository.ReadSubject(id);
         }
 
         public List<Subject> ReadSubjects()
         {
-            throw new System.NotImplementedException();
+            return _subjectRepository.ReadSubjects();
         }
 
         public List<Subject> ReadSubjects(string title)
         {
-            throw new System.NotImplementedException();
+            return _subjectRepository.ReadSubjects(title);
         }
 
         public Subject UpdateSubject(Subject subject, long id)
         {
-            throw new System.NotImplementedException();
+            Subject checkSubject = _subjectRepository.ReadSubject(id);
+            if (checkSubject.Equals(subject))
+            {
+                return _subjectRepository.UpdateSubject(subject);
+            }
+            else
+            {
+                return subject;
+            }
         }
     }
 }

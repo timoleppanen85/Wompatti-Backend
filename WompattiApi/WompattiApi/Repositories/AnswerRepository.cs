@@ -8,34 +8,51 @@ namespace WompattiApi.Repositories
 {
     public class AnswerRepository : IAnswerRepository
     {
+        private readonly WompattidbContext _context;
+
+        public AnswerRepository(WompattidbContext context)
+        {
+            _context = context;
+        }
         public Answer CreateAnswer(Answer answer)
         {
-            throw new NotImplementedException();
+            _context.Add(answer);
+            _context.SaveChanges();
+            return answer;
         }
 
-        public Answer DeleteAnswer(long id)
+        public Answer DeleteAnswer(Answer answer)
         {
-            throw new NotImplementedException();
+            _context.Remove(answer);
+            _context.SaveChanges();
+            return answer;
         }
 
         public Answer ReadAnswer(long id)
         {
-            throw new NotImplementedException();
+            return _context.Answer
+                .Where(a => a.Id == id)
+                .FirstOrDefault(a => a.Id == id);
         }
 
         public List<Answer> ReadAnswers()
         {
-            throw new NotImplementedException();
+            return _context.Answer
+                .ToList();
         }
 
         public List<Answer> ReadAnswers(string searchAnswer)
         {
-            throw new NotImplementedException();
+            return _context.Answer
+                .Where(a => a.Answer1.Contains(searchAnswer))
+                .ToList();
         }
 
-        public Answer UpdateAnswer(Answer answer, long id)
+        public Answer UpdateAnswer(Answer answer)
         {
-            throw new NotImplementedException();
+            _context.Update(answer);
+            _context.SaveChanges();
+            return answer;
         }
     }
 }

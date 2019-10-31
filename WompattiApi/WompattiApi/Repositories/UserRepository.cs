@@ -8,34 +8,52 @@ namespace WompattiApi.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public User CreateUser(User user)
+        private readonly WompattidbContext _context;
+
+        public UserRepository(WompattidbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public User DeleteUser(User user, long id)
+        public User CreateUser(User user)
         {
-            throw new NotImplementedException();
+            _context.Add(user);
+            _context.SaveChanges();
+            return user;
+        }
+
+        public User DeleteUser(User user)
+        {
+            _context.Remove(user);
+            _context.SaveChanges();
+            return user;
         }
 
         public User ReadUser(long id)
         {
-            throw new NotImplementedException();
+            return _context.User
+                .Where(u => u.Id == id)
+                .FirstOrDefault(u => u.Id == id);
         }
 
         public List<User> ReadUsers()
         {
-            throw new NotImplementedException();
+            return _context.User
+                .ToList();
         }
 
         public List<User> ReadUsers(string searchUser)
         {
-            throw new NotImplementedException();
+            return _context.User
+                .Where(u => u.Username.Contains(searchUser))
+                .ToList();
         }
 
-        public User UpdateUser(User user, long id)
+        public User UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            _context.Update(user);
+            _context.SaveChanges();
+            return user;
         }
     }
 }

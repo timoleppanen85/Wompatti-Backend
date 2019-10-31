@@ -12,6 +12,6 @@ namespace WompattiApi.Repositories
         Question ReadQuestion(long id);
         List<Question> ReadQuestions();
         List<Question> ReadQuestions(string searchQuestion);
-        Question UpdateQuestion(Question question, long id);
+        Question UpdateQuestion(Question question);
     }
 }

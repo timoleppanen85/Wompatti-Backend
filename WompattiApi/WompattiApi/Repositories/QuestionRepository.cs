@@ -8,29 +8,45 @@ namespace WompattiApi.Repositories
 {
     public class QuestionRepository : IQuestionRepository
     {
+        private readonly WompattidbContext _context;
+
+        public QuestionRepository(WompattidbContext context)
+        {
+            _context = context;
+        }
+
         public Question CreateQuestion(Question question)
         {
-            throw new NotImplementedException();
+            _context.Add(question);
+            _context.SaveChanges();
+            return question;
         }
 
         public Question ReadQuestion(long id)
         {
-            throw new NotImplementedException();
+            return _context.Question
+                .Where(q => q.Id == id)
+                .FirstOrDefault(q => q.Id == id);
         }
 
         public List<Question> ReadQuestions()
         {
-            throw new NotImplementedException();
+            return _context.Question
+                .ToList();
         }
 
         public List<Question> ReadQuestions(string searchQuestion)
         {
-            throw new NotImplementedException();
+            return _context.Question
+                .Where(q => q.Title.Contains(searchQuestion))
+                .ToList();
         }
 
-        public Question UpdateQuestion(Question question, long id)
+        public Question UpdateQuestion(Question question)
         {
-            throw new NotImplementedException();
+            _context.Update(question);
+            _context.SaveChanges();
+            return question;
         }
     }
 }

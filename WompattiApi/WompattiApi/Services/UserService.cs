@@ -3,39 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WompattiApi.Models;
+using WompattiApi.Repositories;
 
 namespace WompattiApi.Services
 {
     public class UserService : IUserService
     {
+        private readonly UserRepository _userRepository;
+
+        public UserService(UserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
         public User CreateUser(User user)
         {
-            throw new NotImplementedException();
+            return _userRepository.CreateUser(user);
         }
 
         public User DeleteUser(long id)
         {
-            throw new NotImplementedException();
+            User user = ReadUser(id);
+            return _userRepository.DeleteUser(user);
         }
 
         public User ReadUser(long id)
         {
-            throw new NotImplementedException();
+            return _userRepository.ReadUser(id);
         }
 
         public List<User> ReadUsers()
         {
-            throw new NotImplementedException();
+            return _userRepository.ReadUsers();
         }
 
         public List<User> ReadUsers(string searchUser)
         {
-            throw new NotImplementedException();
+            return _userRepository.ReadUsers(searchUser);
         }
 
         public User UpdateUser(User user, long id)
         {
-            throw new NotImplementedException();
+            User checkedUser = ReadUser(id);
+            
+            if (checkedUser.Equals(user))
+            {
+                return _userRepository.UpdateUser(user);
+            }
+            else
+            {
+                return user;
+            }
         }
     }
 }

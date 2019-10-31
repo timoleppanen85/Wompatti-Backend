@@ -48,9 +48,10 @@ namespace WompattiApi.Services
             if (checkAdmin.Equals(admin))
             {
                 return _adminRepository.UpdateAdmin(admin);
-            } else
+            } 
+            else
             {
-                return null;
+                return null; // return wtf?
             }
         }
     }
