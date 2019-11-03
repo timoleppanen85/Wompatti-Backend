@@ -34,14 +34,13 @@ namespace WompattiApi.Services
 
         public Subject UpdateSubject(Subject subject, long id)
         {
-            Subject checkSubject = _subjectRepository.ReadSubject(id);
-            if (checkSubject.Equals(subject))
+            if (subject.Id.Equals(id))
             {
                 return _subjectRepository.UpdateSubject(subject);
             }
             else
             {
-                return subject;
+                return null;
             }
         }
     }

@@ -38,15 +38,13 @@ namespace WompattiApi.Services
 
         public Question UpdateQuestion(Question question, long id)
         {
-            Question checkedQuestion = ReadQuestion(id);
-
-            if (checkedQuestion.Equals(question))
+            if (question.Id.Equals(id))
             {
                 return _questionRepository.UpdateQuestion(question);
             }
             else
             {
-                return question;
+                return null;
             }
         }
     }

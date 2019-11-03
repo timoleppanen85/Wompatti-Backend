@@ -44,14 +44,13 @@ namespace WompattiApi.Services
 
         public Admin UpdateAdmin(Admin admin, long id)
         {
-            Admin checkAdmin = _adminRepository.ReadAdmin(id);
-            if (checkAdmin.Equals(admin))
+            if (admin.Id.Equals(id))
             {
                 return _adminRepository.UpdateAdmin(admin);
-            } 
+            }
             else
             {
-                return null; // return wtf?
+                return null;
             }
         }
     }

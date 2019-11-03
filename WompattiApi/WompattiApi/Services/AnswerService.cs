@@ -44,15 +44,13 @@ namespace WompattiApi.Services
 
         public Answer UpdateAnswer(Answer answer, long id)
         {
-            Answer checkAnswer = ReadAnswer(id);
-
-            if (checkAnswer.Equals(answer))
+            if (answer.Id.Equals(id))
             {
                 return _answerRepository.UpdateAnswer(answer);
             }
             else
             {
-                return answer;
+                return null;
             }
         }
     }

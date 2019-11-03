@@ -43,15 +43,13 @@ namespace WompattiApi.Services
 
         public User UpdateUser(User user, long id)
         {
-            User checkedUser = ReadUser(id);
-            
-            if (checkedUser.Equals(user))
+            if (user.Id.Equals(id))
             {
                 return _userRepository.UpdateUser(user);
             }
             else
             {
-                return user;
+                return null;
             }
         }
     }
