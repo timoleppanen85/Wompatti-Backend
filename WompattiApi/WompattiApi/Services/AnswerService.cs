@@ -32,6 +32,16 @@ namespace WompattiApi.Services
             return _answerRepository.ReadAnswer(id);
         }
 
+        public List<Answer> ReadAnswersFromQuestion (long id)
+        {
+            return _answerRepository.ReadAnswersFromQuestion(id);
+        }
+
+        public List<Answer> ReadAnswersFromUser (long id)
+        {
+            return _answerRepository.ReadAnswersFromUser(id);
+        }
+
         public List<Answer> ReadAnswers()
         {
             return _answerRepository.ReadAnswers();
@@ -44,10 +54,17 @@ namespace WompattiApi.Services
 
         public Answer UpdateAnswer(Answer answer, long id)
         {
-            if (answer.Id.Equals(id))
+            if (answer != null)
             {
-                return _answerRepository.UpdateAnswer(answer);
-            }
+                if (answer.Id.Equals(id))
+                {
+                    return _answerRepository.UpdateAnswer(answer);
+                }
+                else
+                {
+                    return null;
+                }
+            } 
             else
             {
                 return null;

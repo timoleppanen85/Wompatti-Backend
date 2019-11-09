@@ -15,33 +15,45 @@ namespace WompattiApi.Controllers
     {
         private readonly IAnswerService _answerService;
 
-        public AnswerController(IAnswerService answerService)
+        public AnswerController (IAnswerService answerService)
         {
             _answerService = answerService;
         }
 
         [HttpPost]
-        public ActionResult<Answer> CreateAnswer(Answer answer)
+        public ActionResult<Answer> CreateAnswer (Answer answer)
         {
             return new JsonResult(_answerService.CreateAnswer(answer));
         }
 
         [HttpGet]
-        public ActionResult<List<Answer>> ReadAnswer()
+        public ActionResult<List<Answer>> ReadAnswer ()
         {
             return new JsonResult(_answerService.ReadAnswers());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Answer> ReadAnswer(long id)
+        public ActionResult<Answer> ReadAnswer (long id)
         {
             return new JsonResult(_answerService.ReadAnswer(id));
         }
 
         [HttpGet("search/{answer}")]
-        public ActionResult<List<Answer>> ReadAnswers(string answer)
+        public ActionResult<List<Answer>> ReadAnswers (string answer)
         {
             return new JsonResult(_answerService.ReadAnswers(answer));
+        }
+
+        [HttpGet("user/{id}")]
+        public ActionResult<List<Answer>> ReadAnswersFromUser (long id)
+        {
+            return new JsonResult(_answerService.ReadAnswersFromUser(id));
+        }
+
+        [HttpGet("question/{id}")]
+        public ActionResult<List<Answer>> ReadAnswersFromQuestion(long id)
+        {
+            return new JsonResult(_answerService.ReadAnswersFromQuestion(id));
         }
 
         [HttpPut("{id}")]

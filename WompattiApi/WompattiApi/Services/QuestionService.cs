@@ -36,11 +36,23 @@ namespace WompattiApi.Services
             return _questionRepository.ReadQuestions(searchQuestion);
         }
 
+        public List<Question> ReadQuestionsFromSubject (long id)
+        {
+            return _questionRepository.ReadQuestionsFromSubject(id);
+        }
+
         public Question UpdateQuestion(Question question, long id)
         {
-            if (question.Id.Equals(id))
+            if (question != null)
             {
-                return _questionRepository.UpdateQuestion(question);
+                if (question.Id.Equals(id))
+                {
+                    return _questionRepository.UpdateQuestion(question);
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {

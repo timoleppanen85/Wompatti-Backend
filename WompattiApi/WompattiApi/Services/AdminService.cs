@@ -44,9 +44,16 @@ namespace WompattiApi.Services
 
         public Admin UpdateAdmin(Admin admin, long id)
         {
-            if (admin.Id.Equals(id))
+            if (admin != null)
             {
-                return _adminRepository.UpdateAdmin(admin);
+                if (admin.Id.Equals(id))
+                {
+                    return _adminRepository.UpdateAdmin(admin);
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {

@@ -35,6 +35,20 @@ namespace WompattiApi.Repositories
                 .FirstOrDefault(a => a.Id == id);
         }
 
+        public List<Answer> ReadAnswersFromQuestion (long id)
+        {
+            return _context.Answer
+                .Where(a => a.Question.Id == id)
+                .ToList();
+        }
+
+        public List<Answer> ReadAnswersFromUser (long id)
+        {
+            return _context.Answer
+                .Where(a => a.User.Id == id)
+                .ToList();
+        }
+
         public List<Answer> ReadAnswers()
         {
             return _context.Answer

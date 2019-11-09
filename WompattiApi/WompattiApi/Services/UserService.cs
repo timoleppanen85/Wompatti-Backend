@@ -43,9 +43,16 @@ namespace WompattiApi.Services
 
         public User UpdateUser(User user, long id)
         {
-            if (user.Id.Equals(id))
+            if (user != null)
             {
-                return _userRepository.UpdateUser(user);
+                if (user.Id.Equals(id))
+                {
+                    return _userRepository.UpdateUser(user);
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {

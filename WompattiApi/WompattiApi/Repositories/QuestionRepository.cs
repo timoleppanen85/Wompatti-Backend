@@ -42,6 +42,13 @@ namespace WompattiApi.Repositories
                 .ToList();
         }
 
+        public List<Question> ReadQuestionsFromSubject (long id)
+        {
+            return _context.Question
+                .Where(q => q.Subject.Id == id)
+                .ToList();
+        }
+
         public Question UpdateQuestion(Question question)
         {
             _context.Update(question);

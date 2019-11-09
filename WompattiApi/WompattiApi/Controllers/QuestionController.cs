@@ -40,6 +40,12 @@ namespace WompattiApi.Controllers
             return new JsonResult(_questionService.ReadQuestions(title));
         }
 
+        [HttpGet("subject/{id}")]
+        public ActionResult<List<Question>> ReadQuestionsFromSubject(long id)
+        {
+            return new JsonResult(_questionService.ReadQuestionsFromSubject(id));
+        }
+
         [HttpPut("{id}")]
         public ActionResult<Question> UpdateQuestion(Question question, long id)
         {

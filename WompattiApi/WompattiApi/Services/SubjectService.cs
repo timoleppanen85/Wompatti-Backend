@@ -34,9 +34,16 @@ namespace WompattiApi.Services
 
         public Subject UpdateSubject(Subject subject, long id)
         {
-            if (subject.Id.Equals(id))
+            if (subject != null)
             {
-                return _subjectRepository.UpdateSubject(subject);
+                if (subject.Id.Equals(id))
+                {
+                    return _subjectRepository.UpdateSubject(subject);
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
