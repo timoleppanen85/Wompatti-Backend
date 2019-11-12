@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using WompattiApi.Models;
 using WompattiApi.Repositories;
+using WompattiApi.Utilities;
 
 namespace WompattiApi.Services
 {
@@ -16,8 +18,12 @@ namespace WompattiApi.Services
             _adminRepository = adminRepository;
         }
 
-        public Admin CreateAdmin(Admin admin)
+        public Admin CreateAdmin(Admin admin, string password)
         {
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+            admin.Hash = PasswordHash.HashPassword(password, salt);
+            
             return _adminRepository.CreateAdmin(admin);
         }
 
@@ -42,12 +48,14 @@ namespace WompattiApi.Services
             return _adminRepository.ReadAdmins(userName);
         }
 
-        public Admin UpdateAdmin(Admin admin, long id)
+        public Admin UpdateAdmin(Admin admin, long id, string password)
         {
             if (admin != null)
             {
                 if (admin.Id.Equals(id))
                 {
+                    string storedHash = _adminRepository.ReadAdminHash(id);
+                    PasswordHash.UnHashPassword(password, storedHash);
                     return _adminRepository.UpdateAdmin(admin);
                 }
                 else

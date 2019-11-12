@@ -38,12 +38,6 @@ namespace WompattiApi.Controllers
             return new JsonResult(_answerService.ReadAnswer(id));
         }
 
-        [HttpGet("search/{answer}")]
-        public ActionResult<List<Answer>> ReadAnswers (string answer)
-        {
-            return new JsonResult(_answerService.ReadAnswers(answer));
-        }
-
         [HttpGet("user/{id}")]
         public ActionResult<List<Answer>> ReadAnswersFromUser (long id)
         {

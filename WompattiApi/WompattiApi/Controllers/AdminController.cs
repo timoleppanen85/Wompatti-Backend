@@ -17,9 +17,9 @@ namespace WompattiApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Admin> CreateAdmin(Admin admin)
+        public ActionResult<Admin> CreateAdmin(Admin admin, string password)
         {
-            return new JsonResult(_adminService.CreateAdmin(admin));
+            return new JsonResult(_adminService.CreateAdmin(admin, password));
         }
 
         [HttpGet]
@@ -41,9 +41,9 @@ namespace WompattiApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Admin> UpdateAdmin(Admin admin, long id)
+        public ActionResult<Admin> UpdateAdmin(Admin admin, long id, string password)
         {
-            return new JsonResult(_adminService.UpdateAdmin(admin, id));
+            return new JsonResult(_adminService.UpdateAdmin(admin, id, password));
         }
 
         [HttpDelete("{id}")]

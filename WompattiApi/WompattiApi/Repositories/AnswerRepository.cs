@@ -55,13 +55,6 @@ namespace WompattiApi.Repositories
                 .ToList();
         }
 
-        public List<Answer> ReadAnswers(string searchAnswer)
-        {
-            return _context.Answer
-                .Where(a => a.Answer1.Contains(searchAnswer))
-                .ToList();
-        }
-
         public Answer UpdateAnswer(Answer answer)
         {
             _context.Update(answer);

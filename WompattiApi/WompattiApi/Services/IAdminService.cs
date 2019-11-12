@@ -8,11 +8,11 @@ namespace WompattiApi.Services
 {
     public interface IAdminService
     {
-        Admin CreateAdmin(Admin admin);
+        Admin CreateAdmin(Admin admin, string password);
         Admin ReadAdmin(long id);
         List<Admin> ReadAdmins();
         List<Admin> ReadAdmins(string userName);
-        Admin UpdateAdmin(Admin admin, long id);
+        Admin UpdateAdmin(Admin admin, long id, string password);
         Admin DeleteAdmin(long id);
     }
 }

@@ -47,11 +47,6 @@ namespace WompattiApi.Services
             return _answerRepository.ReadAnswers();
         }
 
-        public List<Answer> ReadAnswers(string searchAnswer)
-        {
-            return _answerRepository.ReadAnswers(searchAnswer);
-        }
-
         public Answer UpdateAnswer(Answer answer, long id)
         {
             if (answer != null)

@@ -30,7 +30,7 @@ namespace WompattiApi
         public void ConfigureServices(IServiceCollection services)
         {
             // Connection
-            services.AddDbContext<WompattidbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LocalWompattiDBContext")));
+            services.AddDbContext<WompattidbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("WompattiDBContext")));
 
             // Services
             services.AddScoped<IAdminService, AdminService>();

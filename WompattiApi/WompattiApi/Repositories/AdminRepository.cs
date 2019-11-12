@@ -29,6 +29,14 @@ namespace WompattiApi.Repositories
             return admin;
         }
 
+        public string ReadAdminHash(long id)
+        {
+            return _context.Admin
+                .Where(a => a.Id == id)
+                .Select(a => a.Hash)
+                .SingleOrDefault();
+        }
+
         public Admin ReadAdmin(long id)
         {
             return _context.Admin

@@ -11,6 +11,7 @@ namespace WompattiApi.Repositories
         Admin CreateAdmin(Admin admin);
         Admin ReadAdmin(long id);
         List<Admin> ReadAdmins();
+        string ReadAdminHash (long id);
         List<Admin> ReadAdmins(string searchAdmin);
         Admin UpdateAdmin(Admin admin);
         Admin DeleteAdmin(Admin admin);

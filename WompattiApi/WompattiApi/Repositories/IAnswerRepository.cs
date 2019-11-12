@@ -11,7 +11,6 @@ namespace WompattiApi.Repositories
         Answer CreateAnswer(Answer answer);
         Answer ReadAnswer(long id);
         List<Answer> ReadAnswers();
-        List<Answer> ReadAnswers(string searchAnswer);
         List<Answer> ReadAnswersFromUser (long id);
         List<Answer> ReadAnswersFromQuestion (long id);
         Answer UpdateAnswer(Answer answer);
